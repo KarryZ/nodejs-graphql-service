@@ -14,6 +14,10 @@ const server = new ApolloServer({
     resolvers,
     context: ({ req }) => {
         const token = req.headers.jwt || process.env.token;
+        console.log("token", req.headers.authorization);
+        return {
+            token: req.headers.authorization || '',
+          };
     },
     dataSources: () => {
         return {

@@ -4,6 +4,7 @@ export class UserApi extends RESTDataSource {
     constructor() {
         super()
         this.baseURL = process.env.users_url || 'http://localhost:3004/v1/users';
+        this.token = null;
     }
 
     willSendRequest(request) {
@@ -21,6 +22,7 @@ export class UserApi extends RESTDataSource {
 
     async getJWT (userData, context) {       
         const data = await this.post( `/login`,{...userData} );
+        this.token = data.jwt;
         return data.jwt;
     }
 

@@ -6,9 +6,35 @@ export class FavouritesApi extends RESTDataSource {
         this.baseURL = process.env.favourites_url || 'http://localhost:3007/v1/favourites';
     }
 
-    async getFavourites () {
-        const data = await this.get("");
-        return data.items;
+    willSendRequest(request) {
+        console.log("willSendRequest", this.context.token)
+        request.headers.set('Authorization', this.context.token);
     }
 
+    async getFavourites () {
+        const data = await this.get("");
+        console.log("getFavourites data", data)
+        return data;
+    }
+    async getBands(Id, BandApi) {
+        const favorites = await this.get("");
+        const bandsData = favorites.bandsIds.map(bandId => BandApi.getBandById(bandId));
+        return bandsData;
+ 
+     }
+    async getGenres(Id, GenreApi) {       
+        const favorites = await this.get("");
+        const genressData = favorites.genresIds.map(Id => GenreApi.getGenreById(Id));
+        return genressData;
+    }
+    async getArtist(Id, ArtistApi) {       
+        const favorites = await this.get("");
+        const artistsData = favorites.artistsIds.map(Id => ArtistApi.getArtistById(Id));
+        return artistsData;
+    }
+    async getTracks(Id, TrackApi) {       
+        const favorites = await this.get("");
+        const artists = favorites.tracksIds.map(Id => TrackApi.getTrackById(Id));
+        return artists;
+    }
 }

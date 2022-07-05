@@ -34,31 +34,64 @@ export const resolvers = {
         },
         getFavourites: (_, __, context) => {
             return context.dataSources.FavouritesApi.getFavourites()
-        },
-       
-        
-        // getUserById: (parent, __, context) => {
-        //     const userId = '62bc09e84e9ff95eb9ca20aa';
-        //     co
-        //     return context.dataSources.UserApi.getUserById(userId)
-        // }, 
-        // getAlbumById: (_, __, context) => {
-        //     return context.dataSources.TrackApi.getTracks()
-        // },
+        }
     },
     Track: {
         bands: ({ _id }, _, { dataSources }) => {   
             console.log(dataSources);         
             return dataSources.TrackApi.getTrackBandsIds(_id, dataSources.BandApi)
         },
-        // genresIds: ({ _id }, _, { dataSources }) => {            
-        //     return dataSources.TrackApi.getTrackGenresIds(_id, dataSources.GenreApi)
-        // },
-        // artistsIds: ({ _id }, _, { dataSources }) => {            
-        //     return dataSources.TrackApi.getTrackArtistIds(_id, dataSources.ArtistApi)
-        // },
+        genres: ({ _id }, _, { dataSources }) => {            
+            return dataSources.TrackApi.getTrackGenresIds(_id, dataSources.GenreApi)
+        },
+        artists: ({ _id }, _, { dataSources }) => {            
+            return dataSources.TrackApi.getTrackArtistIds(_id, dataSources.ArtistApi)
+        },
     },
 
+    Album: {
+        bands: ({ _id }, _, { dataSources }) => {   
+            console.log(dataSources);         
+            return dataSources.AlbumApi.getBands(_id, dataSources.BandApi)
+        },
+        genres: ({ _id }, _, { dataSources }) => {            
+            return dataSources.AlbumApi.getGenres(_id, dataSources.GenreApi)
+        },
+        artists: ({ _id }, _, { dataSources }) => {            
+            return dataSources.AlbumApi.getArtist(_id, dataSources.ArtistApi)
+        },
+        tracks: ({ _id }, _, { dataSources }) => {            
+            return dataSources.AlbumApi.getTracks(_id, dataSources.TrackApi)
+        },
+    },
+
+    Artist: {
+        bands: ({ _id }, _, { dataSources }) => {                  
+            return dataSources.ArtistApi.getBands(_id, dataSources.BandApi)
+        }
+    },
+
+    Band: {
+        genres: ({ _id }, _, { dataSources }) => {            
+            return dataSources.BandApi.getGenres(_id, dataSources.GenreApi)
+        },
+    },
+
+    Favourites: {
+        bands: ({ _id }, _, { dataSources }) => {   
+            console.log(dataSources);         
+            return dataSources.FavouritesApi.getBands(_id, dataSources.BandApi)
+        },
+        genres: ({ _id }, _, { dataSources }) => {            
+            return dataSources.FavouritesApi.getGenres(_id, dataSources.GenreApi)
+        },
+        artists: ({ _id }, _, { dataSources }) => {            
+            return dataSources.FavouritesApi.getArtist(_id, dataSources.ArtistApi)
+        },
+        tracks: ({ _id }, _, { dataSources }) => {            
+            return dataSources.FavouritesApi.getTracks(_id, dataSources.TrackApi)
+        },
+    },
     
 
     Mutation: {

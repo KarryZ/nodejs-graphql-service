@@ -5,11 +5,11 @@ export const Album = gql`
         _id: ID
         name: String
         released: Int
-        artists: [Artist]
-        bands: [Band]
-        tracks: [Track]
-        genres: [Genre]
         image: String
+        bands: [Band]
+        genres: [Genre]
+        artists: [Artist]       
+        tracks: [Track]
     }
 
     type Query {   

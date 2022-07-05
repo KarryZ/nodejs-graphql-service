@@ -6,7 +6,7 @@ export const Band = gql`
         name: String
         origin: String
         website: String
-        genres: String
+        genres: [Genre]
     }
 
     type Query {   

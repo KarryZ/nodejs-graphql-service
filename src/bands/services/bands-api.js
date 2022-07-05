@@ -15,5 +15,11 @@ export class BandApi extends RESTDataSource {
         return this.get(`/${Id}`);
     }
 
+    async getGenres (id, GenreApi) {       
+        const bands = await this.get(`/${id}`);
+        const genressData = bands.genresIds.map(Id => GenreApi.getGenreById(Id));
+        return genressData;
+    }
+
 
 }

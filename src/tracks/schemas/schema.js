@@ -7,9 +7,9 @@ export const Track = gql`
         albums: String        
         duration: Int
         released: Int
-        genresIds: [Genre]
+        genres: [Genre]
         bands: [Band]
-        artistsIds: [Artist]
+        artists: [Artist]
     }
 
     type Query {   

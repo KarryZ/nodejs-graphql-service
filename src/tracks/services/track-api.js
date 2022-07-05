@@ -17,20 +17,22 @@ export class TrackApi extends RESTDataSource {
     }
 
     async getTrackBandsIds (trackId, BandApi) {
-       const data = await this.get(`/${trackId}`);
-       const bandsData = data.bandsIds.map(bandId => BandApi.getBandById(bandId));
+       const tracks = await this.get(`/${trackId}`);
+       const bandsData = tracks.bandsIds.map(bandId => BandApi.getBandById(bandId));
        return bandsData;
 
     }
 
-    async getTrackGenresIds (trackId) {       
-        const data = await this.get(`/${trackId}`);
-        return data.genresIds;
+    async getTrackGenresIds (trackId, GenreApi) {       
+        const tracks = await this.get(`/${trackId}`);
+        const genressData = tracks.genresIds.map(Id => GenreApi.getGenreById(Id));
+        return genressData;
     }
 
-    async getTrackArtistIds (trackId) {       
-        const data = await this.get(`/${trackId}`);
-        return data.artistsIds;
+    async getTrackArtistIds (trackId, ArtistApi) {       
+        const tracks = await this.get(`/${trackId}`);
+        const artistsData = tracks.artistsIds.map(Id => ArtistApi.getArtistById(Id));
+        return artistsData;
     }
 
 }

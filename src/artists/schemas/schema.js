@@ -10,7 +10,7 @@ export const Artist = gql`
         birthPlace: String
         country: String!
         bands: [Band]
-        instruments: String
+        instruments: [String]
     }
 
     type Query {   
