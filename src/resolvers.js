@@ -2,6 +2,10 @@
 
 export const resolvers = {
     Query: {
+        
+        getUserById: (_, { id }, { dataSources }) => {
+            return dataSources.UserApi.getUserById(id)
+        },
         getTracks: (_, __, context) => {
             return context.dataSources.TrackApi.getTracks()
         },
@@ -92,6 +96,7 @@ export const resolvers = {
             return dataSources.FavouritesApi.getTracks(_id, dataSources.TrackApi)
         },
     },
+
     
 
     Mutation: {
@@ -103,6 +108,68 @@ export const resolvers = {
             process.env.token = sJWT;
             return  { jwt: sJWT }
         },
+        createAlbum: (_, {input}, {dataSources}) => {
+            return dataSources.AlbumApi.createAlbum(input);
+        },
+        updateAlbum: (_, {id, input}, {dataSources}) => {           
+            const album = dataSources.AlbumApi.updateAlbum(id, input);            
+            return album; 
+        },
+        deleteAlbum: (_, {id}, {dataSources}) => {           
+            const album = dataSources.AlbumApi.deleteAlbum(id);            
+            return album; 
+        },
+
+        createArtist: (_, {input}, {dataSources}) => {
+            return dataSources.ArtistApi.createArtist(input);
+        },
+        updateArtist: (_, {id, input}, {dataSources}) => {           
+            const data = dataSources.ArtistApi.updateArtist(id, input);            
+            return data; 
+        },
+        deleteArtist: (_, {id}, {dataSources}) => {           
+            const data = dataSources.ArtistApi.deleteArtist(id);            
+            return data; 
+        },
+
+
+        createGenre: (_, {input}, {dataSources}) => {
+            return dataSources.GenreApi.createGenre(input);
+        },
+        updateGenre: (_, {id, input}, {dataSources}) => {           
+            const data = dataSources.GenreApi.updateGenre(id, input);            
+            return data; 
+        },
+        deleteGenre: (_, {id}, {dataSources}) => {           
+            const data = dataSources.GenreApi.deleteGenre(id);            
+            return data; 
+        },
+
+
+        createBand: (_, {input}, {dataSources}) => {
+            return dataSources.BandApi.createBand(input);
+        },
+        updateBand: (_, {id, input}, {dataSources}) => {           
+            const data = dataSources.BandApi.updateBand(id, input);            
+            return data; 
+        },
+        deleteBand: (_, {id}, {dataSources}) => {           
+            const data = dataSources.BandApi.deleteBand(id);            
+            return data; 
+        },
+
         
+        createTrack: (_, {input}, {dataSources}) => {
+            return dataSources.TrackApi.createTrack(input);
+        },
+        updateTrack: async (_, {id, input}, {dataSources}) => {            
+            const data = await dataSources.TrackApi.updateTrack(id, input);            
+            return data; 
+        },
+        deleteTrack: (_, {id}, {dataSources}) => {           
+            const data = dataSources.TrackApi.deleteTrack(id);            
+            return data; 
+        },
+ 
     }
 }

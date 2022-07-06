@@ -6,6 +6,10 @@ export class AlbumApi extends RESTDataSource {
         this.baseURL = process.env.albums_url || 'http://localhost:3005/v1/albums';
     }
 
+    willSendRequest(request) {
+        request.headers.set('Authorization', this.context.token);
+    }
+
     async getAlbums () {
         const data = await this.get("");
         return data.items;
@@ -38,6 +42,21 @@ export class AlbumApi extends RESTDataSource {
         const albums = await this.get(`/${Id}`);
         const artists = albums.trackIds.map(Id => TrackApi.getTrackById(Id));
         return artists;
+    }
+
+    createAlbum(data) {       
+        const album = this.post("", {...data });
+        return album;
+    }
+
+    updateAlbum(Id, data) {       
+        const album = this.put(`/${Id}`, {...data});
+        return album;
+    }
+
+    deleteAlbum(Id) {       
+        const album = this.delete(`/${Id}`);
+        return album;
     }
 
 }

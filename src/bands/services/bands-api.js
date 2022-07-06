@@ -6,6 +6,10 @@ export class BandApi extends RESTDataSource {
         this.baseURL = process.env.bands_url || 'http://localhost:3003/v1/bands';
     }
 
+    willSendRequest(request) {
+        request.headers.set('Authorization', this.context.token);
+    }
+
     async getBands () {
         const data = await this.get("");
         return data.items;
@@ -19,6 +23,21 @@ export class BandApi extends RESTDataSource {
         const bands = await this.get(`/${id}`);
         const genressData = bands.genresIds.map(Id => GenreApi.getGenreById(Id));
         return genressData;
+    }
+
+    createBand(data) {       
+        const band = this.post("", {...data });
+        return band;
+    }
+
+    updateBand(Id, data) {       
+        const band = this.put(`/${Id}`, {...data});
+        return band;
+    }
+
+    deleteBand(Id) {       
+        const band = this.delete(`/${Id}`);
+        return band;
     }
 
 

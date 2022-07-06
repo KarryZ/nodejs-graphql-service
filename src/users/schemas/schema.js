@@ -13,7 +13,7 @@ export const User = gql`
     } 
 
     type Query {   
-        getUserById: User       
+        getUserById(id: ID!): User       
     }
     type Mutation {
         registerUser(

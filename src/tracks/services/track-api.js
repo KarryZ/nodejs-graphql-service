@@ -7,6 +7,10 @@ export class TrackApi extends RESTDataSource {
         this.baseURL = process.env.tracks_url || 'http://localhost:3006/v1/tracks';
     }
 
+    willSendRequest(request) {
+        request.headers.set('Authorization', this.context.token);
+    }
+
     async getTracks () {
         const data = await this.get("");
         return data.items;
@@ -33,6 +37,23 @@ export class TrackApi extends RESTDataSource {
         const tracks = await this.get(`/${trackId}`);
         const artistsData = tracks.artistsIds.map(Id => ArtistApi.getArtistById(Id));
         return artistsData;
+    }
+
+    createTrack(data) {       
+        const track = this.post("", {...data });
+        return track;
+    }
+
+    async updateTrack(Id, data) {      
+        console.log(Id, data); 
+        const track = await this.put(`/${Id}`, {...data});
+        console.log(track);
+        return track;
+    }
+
+    deleteTrack(Id) {       
+        const track = this.delete(`/${Id}`);
+        return track;
     }
 
 }

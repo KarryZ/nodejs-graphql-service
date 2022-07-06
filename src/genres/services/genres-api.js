@@ -6,6 +6,10 @@ export class GenreApi extends RESTDataSource {
         this.baseURL = process.env.genres_url || 'http://localhost:3001/v1/genres';
     }
 
+    willSendRequest(request) {
+        request.headers.set('Authorization', this.context.token);
+    }
+
     async getGenres () {
         const data = await this.get("");        
         return data.items;
@@ -13,6 +17,21 @@ export class GenreApi extends RESTDataSource {
 
     getGenreById (Id) {        
         return this.get(`/${Id}`);
+    }
+
+    createGenre(data) {       
+        const genre = this.post("", {...data });
+        return genre;
+    }
+
+    updateGenre(Id, data) {       
+        const genre = this.put(`/${Id}`, {...data});
+        return genre;
+    }
+
+    deleteGenre(Id) {       
+        const genre = this.delete(`/${Id}`);
+        return genre;
     }
 
 }
