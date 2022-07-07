@@ -82,8 +82,7 @@ export const resolvers = {
     },
 
     Favourites: {
-        bands: ({ _id }, _, { dataSources }) => {   
-            console.log(dataSources);         
+        bands: ({ _id }, _, { dataSources }) => {         
             return dataSources.FavouritesApi.getBands(_id, dataSources.BandApi)
         },
         genres: ({ _id }, _, { dataSources }) => {            
@@ -169,6 +168,19 @@ export const resolvers = {
         deleteTrack: (_, {id}, {dataSources}) => {           
             const data = dataSources.TrackApi.deleteTrack(id);            
             return data; 
+        },
+
+        addTrackToFavourites: (_, {input}, {dataSources}) => {
+            return dataSources.FavouritesApi.addTrackToFavourites(input);
+        },
+        addBandToFavourites: (_, {input}, {dataSources}) => {
+            return dataSources.FavouritesApi.addBandToFavourites(input);
+        },
+        addArtistToFavourites: (_, {input}, {dataSources}) => {
+            return dataSources.FavouritesApi.addArtistToFavourites(input);
+        },
+        addGenreToFavourites: (_, {input}, {dataSources}) => {
+            return dataSources.FavouritesApi.addGenreToFavourites(input);
         },
  
     }

@@ -37,4 +37,37 @@ export class FavouritesApi extends RESTDataSource {
         const artists = favorites.tracksIds.map(Id => TrackApi.getTrackById(Id));
         return artists;
     }
+
+    addTrackToFavourites(data) {       
+        const favorites = this.put("/add", {
+            type: 'tracks',
+            ...data 
+        });
+        return favorites;
+    }
+
+    addBandToFavourites(data) {       
+        const favorites = this.put("/add", {
+            type: 'bands',
+            ...data 
+        });
+        return favorites;
+    }
+
+    addArtistToFavourites(data) {       
+        const favorites = this.put("/add", {
+            type: 'artists',
+            ...data 
+        });
+        return favorites;
+    }
+
+    addGenreToFavourites(data) {       
+        const favorites = this.put("/add", {
+            type: 'genres',
+            ...data 
+        });
+        return favorites;
+    }
+    
 }

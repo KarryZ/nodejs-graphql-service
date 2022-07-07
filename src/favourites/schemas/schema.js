@@ -14,4 +14,29 @@ export const Favourites = gql`
         getFavourites: Favourites
     }
 
+    type UpdatedFavorite {
+        _id: ID        
+        userId: String,
+        bandsIds: [String]
+        genresIds: [String]
+        artistsIds: [String]
+        tracksIds: [String]
+    }
+
+    input UpdateFavourites {  
+        type: String!
+        id: String!       
+    }
+
+    input addItem {        
+        id: String!       
+    }
+
+    type Mutation {
+        addTrackToFavourites(input:addItem): UpdatedFavorite
+        addBandToFavourites(input:addItem): UpdatedFavorite
+        addArtistToFavourites(input:addItem): UpdatedFavorite
+        addGenreToFavourites(input:addItem): UpdatedFavorite
+    }
+
 `;
