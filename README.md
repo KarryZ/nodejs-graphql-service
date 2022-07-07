@@ -53,6 +53,47 @@
         ```
         - Set Headers to authorize. Put as key ```Authorization``` and as value ```Bearer and your jwt string```:
       ![image](https://user-images.githubusercontent.com/17831035/177786947-7a586f91-aedf-4965-9579-89b36161f3ff.png)
+    
+    3. Now we can get all data, update it and delete. 
+    There is some examples for Variables:
+
+        - Create track:
+        ```
+            {
+                "input": {
+                "title": "new Track",
+                "released": 2022,
+                "genresIds": ["rock"],
+                "duration": 3,
+                "bandsIds": ["slade"],
+                "artistsIds": ["artistId"]
+                }
+            }
+        ```
+        - Update track:
+
+        ```
+            {
+                "input": {
+                "title": "new Track1",
+                "released": 20221,
+                "genresIds": ["rock1"],
+                "duration": 31,
+                "bandsIds": ["slade1"],
+                "artistsIds": ["artistId1"]
+                },
+                "updateTrackId": "62c6e761d7eef380f99ae547"
+            }
+        ```
+
+        - Delete track:
+        
+        ```
+            {
+                "deleteTrackId": "62c6e761d7eef380f99ae547"
+            }
+         ```
+
 
 
     
