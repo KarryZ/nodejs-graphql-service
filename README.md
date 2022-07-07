@@ -52,7 +52,8 @@
 
         ```
         - Set Headers to authorize. Put as key Authorization and as value Bearer and your jwt string:
-       ![image](https://user-images.githubusercontent.com/17831035/177786701-9c81ace2-ebb2-45dc-b52d-c3c13667401b.png)
+      ![image](https://user-images.githubusercontent.com/17831035/177786947-7a586f91-aedf-4965-9579-89b36161f3ff.png)
+
 
     
 
